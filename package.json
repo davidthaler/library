@@ -4,7 +4,8 @@
   "description": "Course application for 'Building Web Apps with Node.js and Express' on Pluralsight",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=app node app.js"
   },
   "keywords": [
     "pluralsight",
