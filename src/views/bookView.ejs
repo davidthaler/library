@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title><%=book.title%></title>
+    </head>
+    <body>
+        <h1><%=book.title%></h1>
+        <ul>
+            <%for(let k in book){%>
+            <li> <%= `${k}: ${book[k]}`%> </li>
+            <%}%>
+        </ul>
+    </body>
+</html>

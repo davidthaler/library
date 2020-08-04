@@ -27,13 +27,14 @@ const books = [
 
 bookRouter.route('/')
     .get((req, res) => {
-        res.render('books', {books})
+        res.render('bookListView', {books})
     })
 
 bookRouter.route('/:id')
     .get((req, res) => {
         const { id } = req.params
-        res.send(`Book id: ${id}`)
+        let book = books.find(e => e.id == id)
+        res.render('bookView', {book})
     })
 
 module.exports = bookRouter
