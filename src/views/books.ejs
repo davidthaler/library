@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Books</title>
+    </head>
+    <body>
+        <h1>Books</h1>
+        <p>Here are your books:</p>
+        <ul>
+            <%for(let book of books){%>
+            <li>
+                <a href="/books/<%=book.id%>"><%=`${book.title} by ${book.author}`%></a>
+            </li>
+            <%}%>
+        </ul>
+    </body>
+</html>

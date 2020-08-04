@@ -12,5 +12,7 @@
         "ecmaVersion": 11
     },
     "rules": {
+        "comma-dangle": 0,
+        "semi": 0
     }
 }

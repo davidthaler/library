@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title><%=title%></title>
+    </head>
+    <body>
+        <h1>
+            Welcome to <%=title%>
+        </h1>
+        <ul>
+            <%for(let item of nav){%>
+                <li>
+                    <a href="<%=item.link%>"><%= item.title%></a>
+                </li>
+            <%}%>
+        </ul>
+    </body>
+</html>
