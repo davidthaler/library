@@ -1,5 +1,7 @@
 const express = require('express')
 const bookRouter = express.Router()
+const debug = require('debug')('app:bookroute')
+const sql = require('mssql')
 
 function router(nav){
     const books = [
@@ -27,15 +29,21 @@ function router(nav){
     ]
     
     bookRouter.route('/')
-        .get((req, res) => {
-            res.render('bookListView', {nav, books})
+        .get(async (req, res) => {
+            const request = new sql.Request()
+            const {recordset} = await request.query('SELECT * FROM books')
+            res.render('bookListView', {nav, books: recordset})
         })
     
     bookRouter.route('/:id')
-        .get((req, res) => {
+        .get(async (req, res) => {
             const { id } = req.params
+            const request = new sql.Request()
+            const {recordset} = await request
+                                    .input('id', sql.Int, id)
+                                    .query('SELECT * FROM books WHERE id=@id')
             let book = books.find(e => e.id == id)
-            res.render('bookView', {nav, book})
+            res.render('bookView', {nav, book: recordset[0]})
         })
     return bookRouter
 }
