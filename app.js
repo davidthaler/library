@@ -19,18 +19,17 @@ app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'di
 app.set('views', './src/views')
 app.set('view engine', 'ejs')
 
-const bookRouter = require('./src/routes/bookRoutes')
+const nav= [
+    {title: 'Home', link:'/'},
+    {title: 'Books', link: '/books'},
+    {title: 'Authors', link: '/authors'}
+]
+
+const bookRouter = require('./src/routes/bookRoutes')(nav)
 app.use('/books', bookRouter)
 
 app.get('/', (req, res) => {
-    //res.sendFile(path.join(__dirname, 'views', 'index.html'))
-    res.render('index', { 
-        title: 'Library App', 
-        nav:[
-            {title: 'Books', link: '/books'},
-            {title: 'Authors', link: '/authors'}
-        ]
-    })
+    res.render('index', {title: 'Library App', nav})
 })
 
 app.listen(port, () => {
