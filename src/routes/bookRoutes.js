@@ -1,41 +1,51 @@
 const express = require('express')
+const {MongoClient, ObjectID} = require('mongodb')
+const debug = require('debug')('app:bookRoutes')
 const bookRouter = express.Router()
 
 function router(nav){
-    const books = [
-        {
-            id: 1,
-            title: 'War and Peace',
-            genre: 'Historical Fiction',
-            author: 'Lev Nikolayevich Tolstoy',
-            read: false,
-        },
-        {
-            id: 2,
-            title: 'Les Miserables',
-            genre: 'Historical Fiction',
-            author: 'Victor Hugo',
-            read: false
-        },
-        {
-            id: 3,
-            title: 'A Journey to the Center of the Earth',
-            genre: 'Science Fiction',
-            author: 'Jules Verne',
-            read: false
-        }
-    ]
     
     bookRouter.route('/')
         .get((req, res) => {
-            res.render('bookListView', {nav, books})
+            const url = 'mongodb://localhost:27017'
+            // This semicolon is *required*.
+            // Automatic semicolon insertion fails here.
+            const dbName = 'libraryApp';
+            (async function gomongo(){
+                let client
+                try {
+                    client = await MongoClient.connect(url)
+                    debug('Connected in book list...')
+                    const db = client.db(dbName)
+                    const coll = await db.collection('books')
+                    const books = await coll.find().toArray()
+                    debug(books)
+                    res.render('bookListView', {nav, books})
+                } catch (err) {
+                    debug(err.stack)
+                }
+                client.close()
+            }())
         })
     
     bookRouter.route('/:id')
-        .get((req, res) => {
+        .get(async (req, res) => {
             const { id } = req.params
-            let book = books.find(e => e.id == id)
-            res.render('bookView', {nav, book})
+            const url = 'mongodb://localhost:27017'
+            const dbName = 'libraryApp'
+            let client
+            try {
+                client = await MongoClient.connect(url)
+                debug('Connected in book view...')
+                const db = client.db(dbName)
+                const coll = await db.collection('books')
+                const book = await coll.findOne({_id: ObjectID(id)})
+                debug(book)
+                res.render('bookView', {nav, book})
+            }catch (err){
+                debug(err)
+            }
+            client.close()
         })
     return bookRouter
 }
