@@ -1,6 +1,10 @@
 <html>
     <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="/js/jquery.slim.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
         <title><%=title%></title>
+
     </head>
     <body>
         <h1>
@@ -13,5 +17,14 @@
                 </li>
             <%}%>
         </ul>
+        <div>
+            <h3>Sign Up Here</h3>
+            <form name="signUpForm" action="/auth/signup" method="post">
+                UserName: <input name="username" id="username"><br>
+                Password: <input name="password" id="password"><br>
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+
     </body>
 </html>
