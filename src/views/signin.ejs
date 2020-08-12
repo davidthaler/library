@@ -37,11 +37,8 @@
 
   <div class="container">
     <h1 class="my-5 text-center display-3"><%=title%></h1>
-        <form name="signUpForm" action="/auth/signup" method="post" class="form-signin">
-          <p class="h3 mb-3 text-center mb-4">
-            Sign Up Here! 
-            <span class="h4 text-muted">Or <a href="/auth/signin" >sign in</a></span>
-          </p>
+        <form name="signInForm" action="/auth/signin" method="post" class="form-signin">
+          <!-- <h3 class="mb-3 text-center mb-4">Sign In</h3> -->
           <div class="form-group row">
             <label for="username" class="col-sm-4 col-form-label">User Name:</label>
             <input name="username" id="username" class="form-control col-sm-8">
@@ -50,7 +47,7 @@
             <label for="password" class="col-sm-4 col-form-label">Password: </label>
             <input name="password" id="password"c class="form-control col-sm-8">
           </div>
-          <input type="submit" value="Sign Up" class="btn btn-primary btn-block">
+          <input type="submit" value="Sign In" class="btn btn-primary btn-block">
         </form>
     </div>
 </body>
