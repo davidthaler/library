@@ -25,10 +25,12 @@
         </div>
       </nav>
         <h1><%=book.title%></h1>
+        <p><img src="<%=book.details.image_url%>"></p>
         <ul>
             <%for(let k in book){%>
             <li> <%= `${k}: ${book[k]}`%> </li>
             <%}%>
         </ul>
+        <p><%-book.details.description%></p>
     </body>
 </html>

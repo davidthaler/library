@@ -5,14 +5,14 @@ const debug = require('debug')('app:adminRoutes')
 const adminRouter = express.Router()
 const books = [
     {
-        id: 1,
+        bookId: 656,
         title: 'War and Peace',
         genre: 'Historical Fiction',
         author: 'Lev Nikolayevich Tolstoy',
         read: false,
     },
     {
-        id: 2,
+        bookId: 24280,
         title: 'Les Miserables',
         genre: 'Historical Fiction',
         author: 'Victor Hugo',
