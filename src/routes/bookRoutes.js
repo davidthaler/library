@@ -3,8 +3,6 @@ const bookController = require('../controllers/bookController')
 const bookService = require('../services/goodreadsService')
 
 const bookRouter = express.Router()
-const debug = require('debug')('app:bookroute')
-const sql = require('mssql')
 
 function router(nav){
     const {getIndex, getById, middleware} = bookController(bookService, nav)
